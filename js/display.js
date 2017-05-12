@@ -1,8 +1,10 @@
 const startScreen = document.getElementById('start');
 const board = document.getElementById('board');
+const player1 = document.getElementById('player1');
+const player2 = document.getElementById('player2');
 const winScreen = document.getElementById('finish');
 
-var Display = {
+const display = {
 
     startScreen: function () {
         board.style.display = 'none';
@@ -19,6 +21,15 @@ var Display = {
         startScreen.style.display = 'none';
         board.style.display = 'none';
         winScreen.style.display = '';
+    },
+
+    firstPlayer: function() {
+        let randomNumber = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+        if (randomNumber === 1) {
+            player1.classList.add('active');
+        } else {
+            player2.classList.add('active');
+        }
     }
 };
 

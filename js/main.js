@@ -1,8 +1,9 @@
 const startButton = document.querySelector('#start .button');
 
-Display.startScreen();
+display.startScreen();
 
 startButton.addEventListener('click', () => {
-    Display.gameBoard();
+    display.gameBoard();
+    display.firstPlayer();
 });
 
