@@ -16,6 +16,7 @@ h1 {
   width: 1.875em; }
 
 .button {
+  margin-top: 6em;
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
@@ -72,14 +73,14 @@ h1 {
       color: #3688C3; }
     .screen-win-one p:before {
       content: "o";
-      top: 1.75rem; }
+      top: 10rem; }
   .screen-win-two {
     background: #3688C3; }
     .screen-win-two .button {
       color: #FFA000; }
     .screen-win-two p:before {
       content: "×";
-      top: 4.5rem; }
+      top: 10rem; }
 
 .board {
   padding-top: 1em; }

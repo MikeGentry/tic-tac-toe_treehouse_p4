@@ -1,5 +1,6 @@
 const startButton = document.querySelector('#start .button');
 const boxes = document.querySelectorAll('.box');
+const newGameButton = document.querySelector('#finish .button');
 
 display.startScreen();
 
@@ -8,7 +9,7 @@ startButton.addEventListener('click', () => {
     display.firstPlayer();
 });
 
-
+let moveCount = 0;
 for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener('mouseenter', () => {
         if (playerOne.isActive) {
@@ -21,6 +22,42 @@ for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener('mouseleave', () => {
         boxes[i].style.backgroundImage = "";
     });
+
+    boxes[i].addEventListener('click', function event() {
+        if (playerOne.isActive) {
+            boxes[i].classList.add('box-filled-1');
+            playerOne.moves.push(boxes[i].id);
+            boxes[i].removeEventListener('click', event)
+            moveCount++;
+            game.checkProgress(playerOne.moves);
+            playerOne.isActive = false;
+            playerTwo.isActive = true;
+
+        } else if (playerTwo.isActive) {
+            boxes[i].classList.add('box-filled-2');
+            playerTwo.moves.push(boxes[i].id);
+            boxes[i].removeEventListener('click', event)
+            moveCount++;
+            game.checkProgress(playerTwo.moves);
+            playerTwo.isActive = false;
+            playerOne.isActive = true;
+
+        }
+        if (moveCount < 9) {
+            display.switchPlayer();
+        } else {
+            display.gameTie();
+        }
+    });
+
 }
+
+newGameButton.addEventListener('click', () => {
+    window.location.reload(true);
+});
+
+
+
+
 
 
