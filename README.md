@@ -1,5 +1,3 @@
-IN PROGRESS
-
 # tic-tac-toe_treehouse_p4
 
 Tic-Tac-Toe - Treehouse FSJS Project 4
