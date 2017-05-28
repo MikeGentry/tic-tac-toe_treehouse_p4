@@ -1,4 +1,8 @@
+let moveCount = 0;
 const game = {
+
+    gameOver: false,
+
     toWin: [{row: ['1','2','3']},
             {row: ['4','5','6']},
             {row: ['7','8','9']},
@@ -11,9 +15,11 @@ const game = {
 
     checkProgress: function(playerArray) {
         let rowNumber = 0;
+        moveCount++;
+        console.log(moveCount);
         if (playerArray.length >= 3) {
-            playerArray.sort();
-            do {
+            console.log(playerArray);
+            while (rowNumber < this.toWin.length && this.gameOver === false) {
                 let currentRow = this.toWin[rowNumber];
                 let count = 0;
                 for (let j = 0; j < 3; j++) {
@@ -22,12 +28,16 @@ const game = {
                     if (index > -1) {
                         count++;
                     }
-                    if (count === 3) {
+                    if (count === 3 || count === 3 && moveCount === 9) {
                         display.gameOver();
+                        this.gameOver = true;
+                    } else if (moveCount === 9) {
+                        display.gameTie();
                     }
+                    console.log(square, index, count);
                 }
                 rowNumber++;
-            } while (rowNumber < this.toWin.length)
+            }
         }
     }
 };

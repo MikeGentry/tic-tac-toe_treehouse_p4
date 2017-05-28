@@ -9,7 +9,6 @@ startButton.addEventListener('click', () => {
     display.firstPlayer();
 });
 
-let moveCount = 0;
 for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener('mouseenter', () => {
         if (playerOne.isActive) {
@@ -27,8 +26,8 @@ for (let i = 0; i < boxes.length; i++) {
         if (playerOne.isActive) {
             boxes[i].classList.add('box-filled-1');
             playerOne.moves.push(boxes[i].id);
-            boxes[i].removeEventListener('click', event)
-            moveCount++;
+            boxes[i].removeEventListener('click', event);
+            // moveCount++;
             game.checkProgress(playerOne.moves);
             playerOne.isActive = false;
             playerTwo.isActive = true;
@@ -36,18 +35,13 @@ for (let i = 0; i < boxes.length; i++) {
         } else if (playerTwo.isActive) {
             boxes[i].classList.add('box-filled-2');
             playerTwo.moves.push(boxes[i].id);
-            boxes[i].removeEventListener('click', event)
-            moveCount++;
+            boxes[i].removeEventListener('click', event);
+            // moveCount++;
             game.checkProgress(playerTwo.moves);
             playerTwo.isActive = false;
             playerOne.isActive = true;
-
         }
-        if (moveCount < 9) {
-            display.switchPlayer();
-        } else {
-            display.gameTie();
-        }
+        display.switchPlayer();
     });
 
 }
