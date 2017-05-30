@@ -56,7 +56,8 @@ var ticTacToe = (function main() {
         }
     };
 
-//  Display object to control what part of the DOM displays
+
+    //  Display object to control what part of the DOM displays
     const startScreen = document.getElementById('start');
     const board = document.getElementById('board');
     const player1 = document.getElementById('player1');
@@ -135,15 +136,19 @@ var ticTacToe = (function main() {
     });
 
     for (let i = 0; i < boxes.length; i++) {
-        boxes[i].addEventListener('mouseenter', () => {
+        boxes[i].addEventListener('mouseenter', function event() {
+            if (boxes[i].classList.contains('box-filled-1') || boxes[i].classList.contains('box-filled-2')) {
+                boxes[i].removeEventListener('mouseenter', event);
+            }
             if (playerOne.isActive) {
                 boxes[i].style.backgroundImage = "url('img/o.svg')";
             } else if (playerTwo.isActive) {
                 boxes[i].style.backgroundImage = "url('img/x.svg')";
             }
+
         });
 
-        boxes[i].addEventListener('mouseleave', () => {
+        boxes[i].addEventListener('mouseleave', function event() {
             boxes[i].style.backgroundImage = "";
         });
 
@@ -152,7 +157,6 @@ var ticTacToe = (function main() {
                 boxes[i].classList.add('box-filled-1');
                 playerOne.moves.push(boxes[i].id);
                 boxes[i].removeEventListener('click', event);
-                // moveCount++;
                 game.checkProgress(playerOne.moves);
                 playerOne.isActive = false;
                 playerTwo.isActive = true;
@@ -161,14 +165,12 @@ var ticTacToe = (function main() {
                 boxes[i].classList.add('box-filled-2');
                 playerTwo.moves.push(boxes[i].id);
                 boxes[i].removeEventListener('click', event);
-                // moveCount++;
                 game.checkProgress(playerTwo.moves);
                 playerTwo.isActive = false;
                 playerOne.isActive = true;
             }
             display.switchPlayer();
         });
-
     }
 
     newGameButton.addEventListener('click', () => {
